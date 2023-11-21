@@ -1,21 +1,23 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { BeatLoader } from "react-spinners";
+import { BeatLoader, PacmanLoader, SyncLoader } from "react-spinners";
 
 function App() {
   // todo: hardcoded token
-  let token = "4|ledt1MBrHQwh11YNIF8JuVku8qe2hR0ml19kYMjf71878115";
+  let token = "6|aYBFNRVUH0DkcKE2OEjOKhwyY18QdH5mHotgw4pMf1fa2c3b";
   // todo: tasks useState is currently holding
   // the number of tasks of a authenticated user
   const [tasks, setTasks] = useState();
+
+  // todo: different pages / routing. simple login screen and accessing tasks
 
   // Give number of tasks of a authenticated user
   useEffect(() => {
     const fetch_count = async () => {
       try {
         const response = await axios.post(
-          "http://127.0.0.1:8000/api/task/count",
+          "https://chrisouboter.com/api/task/count",
           {},
           {
             headers: {
@@ -31,10 +33,13 @@ function App() {
 
   return (
     <div className="App">
-      <h1>
-        Er staan {tasks ? tasks.count : <BeatLoader color="#000000" />} task(s)
-        voor je klaar
-      </h1>
+      {tasks ? (
+        <h1>Er staan {tasks.count} taken voor je klaar</h1>
+      ) : (
+        <div className="loading-spinner">
+          <SyncLoader color="#111111" />
+        </div>
+      )}
     </div>
   );
 }

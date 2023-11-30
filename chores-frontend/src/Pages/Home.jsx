@@ -109,9 +109,9 @@ function Home() {
 
             <div className="flex md:flex-row flex-col w-full items-center mt-20 justify-center">
               {todays.length > 0 ? (
-                <div className="bg-white h-96 lg:w-1/4 w-full p-4 m-4 rounded-xl">
+                <div className="bg-slate-200 h-96 lg:w-1/4 w-full p-4 m-4 rounded-xl">
                   <h2 className="text-xl text-center pb-4">Vandaag</h2>
-                  {todays.map((task) => (
+                  {todays.slice(0, 3).map((task) => (
                     <TaskCard key={task.id} task={task}></TaskCard>
                   ))}
                 </div>
@@ -119,9 +119,9 @@ function Home() {
                 <div></div>
               )}
               {futures.length > 0 ? (
-                <div className="bg-white h-96 lg:w-1/4 w-full p-4 m-4 rounded-xl">
-                  <h2 className="text-xl text-center pb-4">Vandaag</h2>
-                  {futures.map((task) => (
+                <div className="bg-slate-200 h-96 lg:w-1/4 w-full p-4 m-4 rounded-xl">
+                  <h2 className="text-xl text-center pb-4">Toekomst</h2>
+                  {futures.slice(0, 3).map((task) => (
                     <TaskCard key={task.id} task={task}></TaskCard>
                   ))}
                 </div>

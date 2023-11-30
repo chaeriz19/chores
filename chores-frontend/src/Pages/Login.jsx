@@ -50,7 +50,7 @@ export default function Login() {
 
   return (
     <section className="bg-gradient-to-r from-indigo-500 to-indigo-300 min-h-screen flex items-center justify-center">
-      <div className="bg-[#ffffff] min-w- rounded-xl flex p-5 max-w-3xl shadow-xl">
+      <div className="bg-slate-200 min-w- rounded-xl flex p-5 max-w-3xl shadow-xl">
         <div className="sm:w-1/2 p-5">
           <div className="font-bold text-2xl">Huishoudelijk Online</div>
           <p className="text-sm mt-4 w-60">

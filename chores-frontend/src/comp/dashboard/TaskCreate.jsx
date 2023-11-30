@@ -51,8 +51,8 @@ export default function TaskCreate() {
   }
 
   return (
-    <div className="shadow-xl bg-slate-200">
-      <form className="md:w-1/4 w-full flex flex-col p-4">
+    <div className="shadow-xl bg-slate-200  rounded-xl">
+      <form className="md:w-2/4 w-full flex flex-col p-4">
         <label>Titel </label>
         <input
           className="p-2"

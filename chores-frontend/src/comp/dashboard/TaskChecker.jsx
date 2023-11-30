@@ -32,7 +32,8 @@ export default function TaskChecker() {
   return (
     <div className="md:w-full w-full">
       {tasks ? (
-        <div>
+        <div className="shadow-xl bg-slate-200 pb-2 mt-2 pl-2 pr-2  rounded-xl">
+          <h1 className="text-2xl">Alle taken</h1>
           {tasks.map((task) => (
             <TaskCardAdmin
               key={task.id}

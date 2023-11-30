@@ -2,14 +2,15 @@ import axios from "axios";
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useNavigate } from "react-router-dom";
 
 export default function TaskCreate() {
-  const [username, setUsername] = useState("chris");
+  const [username, setUsername] = useState("bram");
   const [title, setTitle] = useState("test");
   const [description, setDescription] = useState("test");
   const [duedate, setDuedate] = useState(new Date());
   let token = localStorage.getItem("token");
-
+  const navigate = useNavigate();
   async function createTask() {
     console.log(duedate);
     try {
@@ -27,6 +28,7 @@ export default function TaskCreate() {
           },
         }
       );
+      await navigate(0);
     } catch (error) {
       console.log("error creating: " + error);
     }

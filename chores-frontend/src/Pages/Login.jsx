@@ -38,7 +38,7 @@ export default function Login() {
   function handleLogin(e) {
     e.preventDefault();
     if (username == "" || password == "") {
-      setNotification("Vul alles in pls");
+      setNotification("Vul alles in");
       return false;
     }
     const request = {

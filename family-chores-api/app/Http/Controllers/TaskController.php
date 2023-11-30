@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Task;
 use Carbon\Carbon;
 class TaskController extends Controller
 {
@@ -12,6 +13,8 @@ class TaskController extends Controller
         $tasks = Auth::user()->tasks;
         return response()->json($tasks);
     }
+
+    
 
     public function store(Request $request) {
         $request->validate([
@@ -43,6 +46,10 @@ class TaskController extends Controller
 
     public function get() {
         $tasks = Auth::user()->tasks;
+        return response()->json($tasks);
+    }
+    public function get_all_tasks() {
+        $tasks = Task::all();
         return response()->json($tasks);
     }
 }

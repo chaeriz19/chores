@@ -30,7 +30,7 @@ export default function TaskChecker() {
   }, []);
 
   return (
-    <div className="md:w-2/4 w-full">
+    <div className="md:w-full w-full shadow-xl bg-slate-200">
       {tasks ? (
         <div>
           {tasks.map((task) => (

@@ -6,10 +6,27 @@ import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 
 const checkAuthentication = () => {
-  return localStorage.getItem("token") !== null;
+  let user = localStorage.getItem("user");
+  if (user == null) {
+    return 0;
+  }
+  user = JSON.parse(user);
+  return user.is_admin;
+};
+
+const checkLogin = () => {
+  return localStorage.getItem("token");
 };
 
 const ProtectedRoute = ({ element, path }) => {
+  return checkLogin() ? (
+    element
+  ) : (
+    <Navigate to="/" replace state={{ from: path }}></Navigate>
+  );
+};
+
+const AdminRoute = ({ element, path }) => {
   return checkAuthentication() ? (
     element
   ) : (
@@ -25,9 +42,10 @@ export default function App() {
         <Route path="/" element={<Login />} />
 
         <Route path="home" element={<ProtectedRoute element={<Home />} />} />
+
         <Route
           path="dashboard"
-          element={<ProtectedRoute element={<Dashboard />} />}
+          element={<AdminRoute element={<Dashboard />} />}
         />
 
         {/* <Route path="home" element={<Home />} />

@@ -40,23 +40,25 @@ export default function TaskCreate() {
   }
 
   return (
-    <div>
+    <div className="shadow-xl bg-slate-200">
       <form className="md:w-1/4 w-full flex flex-col p-4">
         <label>Titel </label>
         <input
+          className="p-2"
           placeholder="Titel van het klusje"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         ></input>
         <label>Desc </label>
         <input
+          className="p-2"
           placeholder="Hoe moet het klusje gebeuren?"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         ></input>
         <label>Due date </label>
         <DatePicker
-          className="w-full"
+          className="w-full p-2"
           selected={duedate}
           onChange={(date) => setDuedate(date)}
           dateFormat="dd/MM/yyyy"
@@ -69,7 +71,10 @@ export default function TaskCreate() {
           <option value="bram">Bram</option>
           <option value="chris">Chris</option>
         </select>
-        <button onClick={(e) => handleSubmit(e)} className="m-4 bg-blue-500">
+        <button
+          onClick={(e) => handleSubmit(e)}
+          className="mt-4 bg-blue-500 p-2 w-full"
+        >
           Maak task
         </button>
       </form>

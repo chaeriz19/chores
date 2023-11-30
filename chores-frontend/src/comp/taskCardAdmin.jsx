@@ -31,7 +31,7 @@ export default function TaskCardAdmin({ task, id }) {
     <div
       key={task.id}
       className={`p-4 shadow-xl hover:border-solid hover:border-4 hover:border-[#00000077] ${
-        task.completed ? "bg-[#5cac61b2]" : "bg-[#ac5c5cba]"
+        task.completed ? "bg-[#5cac61b2]" : "bg-[#cc5353ba]"
       } shadow-sm text-white mt-2 `}
     >
       <h1 className="font-bold">

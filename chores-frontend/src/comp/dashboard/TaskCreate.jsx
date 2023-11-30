@@ -5,9 +5,9 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
 
 export default function TaskCreate() {
-  const [username, setUsername] = useState("bram");
-  const [title, setTitle] = useState("test");
-  const [description, setDescription] = useState("test");
+  const [username, setUsername] = useState("");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
   const [duedate, setDuedate] = useState(new Date());
   let token = localStorage.getItem("token");
   const navigate = useNavigate();
@@ -43,9 +43,17 @@ export default function TaskCreate() {
     <div>
       <form className="md:w-1/4 w-full flex flex-col p-4">
         <label>Titel </label>
-        <input></input>
+        <input
+          placeholder="Titel van het klusje"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        ></input>
         <label>Desc </label>
-        <input></input>
+        <input
+          placeholder="Hoe moet het klusje gebeuren?"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        ></input>
         <label>Due date </label>
         <DatePicker
           className="w-full"
@@ -54,7 +62,13 @@ export default function TaskCreate() {
           dateFormat="dd/MM/yyyy"
         />
         <label>Username</label>
-        <input></input>
+        <select value={username} onChange={(e) => setUsername(e.target.value)}>
+          {" "}
+          <option>Selecteer wie het moet doen</option>
+          <option value="chiel">Chiel</option>
+          <option value="bram">Bram</option>
+          <option value="chris">Chris</option>
+        </select>
         <button onClick={(e) => handleSubmit(e)} className="m-4 bg-blue-500">
           Maak task
         </button>

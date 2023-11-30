@@ -3,8 +3,11 @@ import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
+import { SyncLoader } from "react-spinners";
 
 export default function TaskCreate() {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const [username, setUsername] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -12,7 +15,15 @@ export default function TaskCreate() {
   let token = localStorage.getItem("token");
   const navigate = useNavigate();
   async function createTask() {
+    setLoading(true);
+    if ((username == "") | (title == "") | (description == "")) {
+      setError("Vul alles in");
+      setLoading(false);
+      return false;
+    }
+
     console.log(duedate);
+
     try {
       const response = await axios.post(
         "https://chrisouboter.com/api/task/create",
@@ -73,10 +84,15 @@ export default function TaskCreate() {
         </select>
         <button
           onClick={(e) => handleSubmit(e)}
-          className="mt-4 animate-pulse text-white bg-blue-500 p-2 w-full"
+          className="mt-4 animate-pulse text-white bg-blue-500 p-2 w-full flex flex-col items-center justify-center"
         >
-          Maak task
+          {loading ? (
+            <SyncLoader className="p-2" color="#ffffff" size={12} />
+          ) : (
+            <div>Maak task</div>
+          )}
         </button>
+        <p className="pt-2 text-red-500">{error}</p>
       </form>
     </div>
   );

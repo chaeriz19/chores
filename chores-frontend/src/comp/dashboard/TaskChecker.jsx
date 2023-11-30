@@ -30,7 +30,7 @@ export default function TaskChecker() {
   }, []);
 
   return (
-    <div className="md:w-full w-full shadow-xl bg-slate-200">
+    <div className="md:w-full w-full">
       {tasks ? (
         <div>
           {tasks.map((task) => (
@@ -42,7 +42,9 @@ export default function TaskChecker() {
           ))}
         </div>
       ) : (
-        <SyncLoader color="#ffffff" />
+        <div className="flex flex-col items-center pt-12">
+          <SyncLoader color="#ffffff" />
+        </div>
       )}
     </div>
   );

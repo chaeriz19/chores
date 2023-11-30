@@ -14,7 +14,6 @@ class TaskController extends Controller
         return response()->json($tasks);
     }
 
-    
 
     public function store(Request $request) {
         $request->validate([
@@ -36,6 +35,11 @@ class TaskController extends Controller
         ]);
 
         return response()->json($task, 201);
+    }
+
+    public function delete(Request $request) {
+        $task = Task::where('id', $request->input('id'))->first();
+        $task->delete();
     }
 
     public function count(Request $request) {

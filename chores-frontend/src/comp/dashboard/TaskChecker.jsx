@@ -13,7 +13,7 @@ export default function TaskChecker() {
     const fetch_tasks = async () => {
       try {
         const response = await axios.post(
-          "https://chrisouboter.com/api/task/get",
+          "https://chrisouboter.com/api/task/getall",
           {},
           {
             headers: {
@@ -34,7 +34,11 @@ export default function TaskChecker() {
       {tasks ? (
         <div>
           {tasks.map((task) => (
-            <TaskCardAdmin key={task.id} task={task}></TaskCardAdmin>
+            <TaskCardAdmin
+              key={task.id}
+              task={task}
+              id={task.id}
+            ></TaskCardAdmin>
           ))}
         </div>
       ) : (

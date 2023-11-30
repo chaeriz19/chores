@@ -73,7 +73,7 @@ export default function TaskCreate() {
         </select>
         <button
           onClick={(e) => handleSubmit(e)}
-          className="mt-4 bg-blue-500 p-2 w-full"
+          className="mt-4 animate-pulse text-white bg-blue-500 p-2 w-full"
         >
           Maak task
         </button>

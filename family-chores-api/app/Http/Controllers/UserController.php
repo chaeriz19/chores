@@ -28,7 +28,7 @@ class UserController extends Controller
             return response()->json(['token' => $token, 'user' => $user]);
         }
 
-        return response()->json(['message' => 'Invalid username or password provided.', 401]);
+        return response()->json(['message' => 'Invalid username or password provided.', 'status' => 401]);
     }
 
     public function logout(Request $request) {

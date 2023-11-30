@@ -1,47 +1,41 @@
-import "./App.css";
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { BeatLoader, PacmanLoader, SyncLoader } from "react-spinners";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import "./index.css";
+import Dashboard from "./Pages/Dashboard";
+import Home from "./Pages/Home";
+import Login from "./Pages/Login";
 
-function App() {
-  // todo: hardcoded token
-  let token = "6|aYBFNRVUH0DkcKE2OEjOKhwyY18QdH5mHotgw4pMf1fa2c3b";
-  // todo: tasks useState is currently holding
-  // the number of tasks of a authenticated user
-  const [tasks, setTasks] = useState();
+const checkAuthentication = () => {
+  return localStorage.getItem("token") !== null;
+};
 
-  // todo: different pages / routing. simple login screen and accessing tasks
+const ProtectedRoute = ({ element, path }) => {
+  return checkAuthentication() ? (
+    element
+  ) : (
+    <Navigate to="/" replace state={{ from: path }}></Navigate>
+  );
+};
 
-  // Give number of tasks of a authenticated user
-  useEffect(() => {
-    const fetch_count = async () => {
-      try {
-        const response = await axios.post(
-          "https://chrisouboter.com/api/task/count",
-          {},
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        setTasks(response.data);
-      } catch (error) {}
-    };
-    fetch_count();
-  }, [token]);
-
+export default function App() {
   return (
-    <div className="App">
-      {tasks ? (
-        <h1>Er staan {tasks.count} taken voor je klaar</h1>
-      ) : (
-        <div className="loading-spinner">
-          <SyncLoader color="#111111" />
-        </div>
-      )}
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<Login />} />
+        <Route path="/" element={<Login />} />
+
+        <Route path="home" element={<ProtectedRoute element={<Home />} />} />
+        <Route
+          path="dashboard"
+          element={<ProtectedRoute element={<Dashboard />} />}
+        />
+
+        {/* <Route path="home" element={<Home />} />
+          <Route path="dashboard" element={<Dashboard /> } /> */}
+      </Routes>
+    </BrowserRouter>
   );
 }
 
-export default App;
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App />);

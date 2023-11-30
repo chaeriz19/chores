@@ -15,6 +15,7 @@ class TaskController extends Controller
 
     public function store(Request $request) {
         $request->validate([
+            'user_name' => 'required|exists:users,name',
             'title' => 'required|string',
             'description' => 'nullable|string',
             'completed' => 'boolean',
@@ -22,8 +23,9 @@ class TaskController extends Controller
         ]);
 
         $dueDate = Carbon::createFromFormat('d/m/Y', $request->input('due_date'))->format('Y-m-d');
+        $user = User::where('name', $request->input("user_name"))->first();
 
-        $task = Auth::user()->tasks()->create([
+        $task = $user->tasks()->create([
             'title' => $request->input('title'),
             'description' => $request->input('description'),
             'completed' => $request->input('completed', false),

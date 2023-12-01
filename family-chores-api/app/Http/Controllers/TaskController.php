@@ -56,4 +56,18 @@ class TaskController extends Controller
         $tasks = Task::all();
         return response()->json($tasks);
     }
+    public function toggle_completed(Request $request)
+    {
+        $request->validate([
+            'id' => 'required|exists:tasks,id',
+        ]);
+
+        $task = Task::findOrFail($request->input('id'));
+
+        $task->update([
+            'completed' => !$task->completed,
+        ]);
+
+        return response()->json($task);
+    }
 }

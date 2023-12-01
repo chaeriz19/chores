@@ -27,8 +27,26 @@ export default function TaskCardAdmin({ task, id }) {
     return true;
   }
 
+  async function toggleComplete() {
+    try {
+      const response = await axios.post(
+        "https://chrisouboter.com/api/task/togglecomplete",
+        {
+          id: id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      await navigate(0);
+    } catch (error) {}
+  }
+
   return (
     <div
+    onClick={() => toggleComplete()}
       key={task.id}
       className={`p-4 shadow-xl hover:border-solid hover:opacity-75 hover:text-black  ${
         task.completed ? "bg-[#5cac61b2]" : "bg-[#cc5353ba]"

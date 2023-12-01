@@ -13,6 +13,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('/task/get', [TaskController::class, 'get']);
     Route::post('/task/getall', [TaskController::class, 'get_all_tasks']);
+    Route::post('/task/togglecomplete', [TaskController::class, 'toggle_completed']);
 
     Route::post('/task/delete', [TaskController::class, 'delete']);
     Route::post('/task/create', [TaskController::class, 'store']);
